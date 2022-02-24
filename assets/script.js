@@ -14,6 +14,7 @@ let myTimer
 
 // showing questions when we click start 
 document.getElementById("start").addEventListener('click', event => {
+    document.getElementById('start').classList.add('hidden')
     document.getElementById("showMe").classList.remove('hidden')
     displayScore()
     myTimer = setInterval(timerFunction, 1000) 
@@ -37,7 +38,28 @@ const quizFinished = () => {
 }
 
 document.getElementById('submit').addEventListener('click', event => {
-    
+    let newScore = {
+        time: timer,
+        initals: document.getElementById('newScore').value
+    }
+    console.log(newScore)
+    if(localStorage.getItem('scores')) {
+        let scores = JSON.parse(localStorage.getItem('scores'))
+        scores.push(newScore)
+        localStorage.setItem('scores', JSON.stringify(scores))
+    } else {
+        let scores = []
+        scores.push(newScore)
+        localStorage.setItem('scores', JSON.stringify(scores))
+    }
+    let scores = JSON.parse(localStorage.getItem('scores'))
+    scores.forEach(score=> {
+        document.getElementById('scores').innerHTML += `
+        ${score.initals}
+        ${score.time}
+        <hr> </hr>
+        `
+    })
 })
 
 // console log | answer selection 
