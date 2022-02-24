@@ -33,7 +33,12 @@ const quizFinished = () => {
     console.log('quiz finished')
     document.getElementById('myQuestion').innerHTML = ''
     document.getElementById('myOptions').innerHTML = ''
+    document.getElementById('initials').classList.remove('hidden')
 }
+
+document.getElementById('submit').addEventListener('click', event => {
+    
+})
 
 // console log | answer selection 
 document.addEventListener('click', event => {
