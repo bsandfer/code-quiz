@@ -5,8 +5,29 @@ document.getElementById("start").addEventListener('click', event => {
 
 })
 
-// question count start at zero
+// console log answer selection 
+document.addEventListener('click', event => {
+    if(event.target.classList.contains('option')) {
+        // console.log(event.target.dataset.option)
+        // console.log(event.target.dataset.answer)
+        if(event.target.dataset.option== event.target.dataset.answer) {
+            console.log('Correct!')
+            score += 1
+            currentQuestion += 1
+            displayQuestion()
+        } else {
+            console.log('Wrong.')
+        }
+    
+    }
+    
+})
+
+// set question number, score and timer
+
 currentQuestion = 0
+let score = 0
+let timer = 0
 
 // define variables as arrays
 let questions = [
@@ -25,15 +46,25 @@ let questions = [
 
 const displayQuestion = () => {
     document.getElementById("myQuestion").innerHTML = `
-    <p>
+    <p
+    
+    >
     ${questions[currentQuestion].question}
     </p>
     `
     document.getElementById('myOptions').innerHTML = `
-    <p>
+    <p
+    class="option"
+    data-option= '${questions[currentQuestion].options[0]}'
+    data-answer= '${questions[currentQuestion].answer}'
+    >
     ${questions[currentQuestion].options[0]}
     </p>
-    <p>
+    <p
+    class="option"
+    data-option= '${questions[currentQuestion].options[1]}'
+    data-answer= '${questions[currentQuestion].answer}'
+    >
     ${questions[currentQuestion].options[1]}
     </p>
     `
